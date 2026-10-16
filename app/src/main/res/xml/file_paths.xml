@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 下载的 APK 放这里，然后交给系统安装器 -->
+    <external-files-path name="downloads" path="Download/" />
+    <cache-path name="cache" path="." />
+</paths>

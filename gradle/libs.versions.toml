@@ -1,0 +1,70 @@
+# ============================================================
+#  版本目录 —— 所有版本号都在 2026-10 从 Maven 仓库实际查询过
+# ============================================================
+[versions]
+# 构建工具链（Gradle 8.14.6）
+#
+# 为什么停在 AGP 8.13.2 而不是 9.x：
+#   AGP 9.0 把 Kotlin 支持内置了，会和应用 org.jetbrains.kotlin.android 冲突；
+#   官方的兼容开关 android.enableLegacyVariantApi 在 9.0 里已被删除（写上就报错），
+#   而 builtInKotlin=false + newDsl=false 的组合又会让 kotlin-android 插件挂掉。
+#   8.13.2 是 AGP 8 的最后一个稳定版，经典配置，没有这些坑。
+#   等有空再迁移到内置 Kotlin。
+agp             = "8.13.2"
+kotlin          = "2.4.21"
+compileSdk      = "36"
+minSdk          = "26"
+
+# AndroidX（走 Google Maven 或国内镜像）
+coreKtx         = "1.19.1"
+activityCompose = "1.13.0"
+lifecycle       = "2.11.0"
+navigation      = "2.10.2"
+composeBom      = "2026.09.00"
+datastore       = "1.2.1"
+
+# ★ MIUIX —— 小米设计系统 Compose 版（Maven Central）
+miuix           = "0.9.4"
+
+# 网络 / 序列化 / 图片
+okhttp          = "5.5.0"
+serialization   = "1.11.0"
+coroutines      = "1.11.0"
+coil            = "3.6.3"
+
+# 微软登录（只有「App 直连 OneDrive」方案才需要）
+msal            = "8.5.0"
+
+[libraries]
+core-ktx          = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+activity-compose  = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+lifecycle-vm      = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+lifecycle-rt      = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
+navigation        = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+datastore         = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+compose-bom       = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-ui        = { group = "androidx.compose.ui", name = "ui" }
+compose-preview   = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-tooling   = { group = "androidx.compose.ui", name = "ui-tooling" }
+
+# ★ MIUIX
+miuix-ui          = { group = "top.yukonga.miuix.kmp", name = "miuix-ui", version.ref = "miuix" }
+miuix-icons       = { group = "top.yukonga.miuix.kmp", name = "miuix-icons", version.ref = "miuix" }
+miuix-preference  = { group = "top.yukonga.miuix.kmp", name = "miuix-preference", version.ref = "miuix" }
+
+okhttp            = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-log        = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+serialization     = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+coroutines        = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+coil              = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-net          = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
+
+msal              = { group = "com.microsoft.identity.client", name = "msal", version.ref = "msal" }
+
+[plugins]
+android-application  = { id = "com.android.application", version.ref = "agp" }
+kotlin-android       = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose       = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

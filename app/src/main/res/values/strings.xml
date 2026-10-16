@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">星云盘</string>
+    <string name="tab_files">文件</string>
+    <string name="tab_transfer">传输</string>
+    <string name="tab_mine">我的</string>
+    <string name="action_upload">上传</string>
+    <string name="action_search">搜索</string>
+    <string name="action_refresh">刷新</string>
+    <string name="empty_files">还没有文件</string>
+    <string name="empty_hint">点右下角上传你的第一个文件</string>
+</resources>
